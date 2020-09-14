@@ -1,0 +1,69 @@
+.sidebar-sm {
+  background-color: #43125c;
+  color: white;
+  width: 100%;
+  height: 90%;
+  text-align: left;
+  padding: 24px 0;
+  overflow-y: scroll;
+}
+
+.sidebar-sm h5 {
+  padding: 0px 24px;
+}
+
+.sidebar-sm a {
+  color: white;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+// channels
+.sidebar-sm .channels div {
+  opacity: 0.5;
+  padding: 8px 24px;
+}
+
+.sidebar-sm .channels div:hover{
+  opacity: 1;
+}
+
+.sidebar-sm .channels div i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.channel-active {
+  opacity: 1;
+}
+
+// person
+.sidebar-sm .person {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  line-height: 16px;
+  opacity: 0.5;
+}
+
+.sidebar-sm .person:hover {
+  opacity: 1;
+}
+
+.sidebar-sm .person .dot {
+  background-color: white;
+  opacity: 0.5;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-left: 44px;
+}
+
+.dot-active {
+  background-color: rgb(31, 229, 189);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}

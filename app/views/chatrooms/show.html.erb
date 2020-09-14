@@ -1,16 +1,37 @@
-<h1>#<%= @chatroom.name %></h1>
-<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
-  <% @chatroom.messages.each do |message| %>
-    <div class="message-container" id="message-<%= message.id %>">
-      <i class="author">
-        <span><%= message.user.nickname %></span>
-        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-      </i>
-      <p><%= message.content %></p>
+<div class="grid-container">
+  <div class="sidebar-sm">
+    <div class="channels">
+      <h5>Channels</h5>
+      <% @chatrooms.each do |chatroom| %>
+        <div><i class="fab fa-slack-hash"></i><%= link_to chatroom.name, chatroom_path(chatroom) %></div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+    <br>
+    <div class="direct">
+      <h5>Direct Messages</h5>
+      <% @users.each do |user| %>
+        <div class="flex-container">
+          <div class="row">
+            <div class="person">
+              <div class="dot"></div>
+              <span><%= link_to user.nickname %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<%= simple_form_for [ @chatroom, @message ] do |f| %>
-  <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
-<% end %>
+  <div class="chat">
+    <div class="message" id="messages" data-chatroom-id="<%= @chatroom.id %>">
+      <% @chatroom.messages.each do |message| %>
+        <%= render 'messages/message', message: message %>
+      <% end %>
+
+    <%= simple_form_for [ @chatroom, @message ] do |f| %>
+      <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+    <% end %>
+    </div>
+  </div>
+
+</div>

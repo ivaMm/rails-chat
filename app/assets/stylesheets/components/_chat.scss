@@ -1,0 +1,9 @@
+.chat {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  padding: 16px;
+  height: 83vh;
+  overflow-y: scroll;
+  border-top: 1px solid rgba(150, 150, 150, .3);
+}
