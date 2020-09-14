@@ -2,12 +2,19 @@
 .message-container {
  padding: 8px 12px 0px 12px;
 }
-.author {
 
+.author {
   line-height: 16px;
   font-weight: bold;
 }
+
 .message-container p {
   line-height: 16px;
   padding: 8px 12px 0px 12px;
+}
+
+.message-input {
+  position: fixed;
+  top: 92%;
+  width: 76%;
 }
