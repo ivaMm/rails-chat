@@ -1,6 +1,6 @@
 import consumer from "./consumer";
 
-document.addEventListener('turbolinks:load', () => {
+const initChatroomCable = () => {
   const messagesContainer = document.getElementById('messages');
   if (messagesContainer) {
     const id = messagesContainer.dataset.chatroomId;
@@ -11,4 +11,6 @@ document.addEventListener('turbolinks:load', () => {
       }
     });
   }
-});
+};
+
+export { initChatroomCable };
