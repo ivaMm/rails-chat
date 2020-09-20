@@ -1,0 +1,8 @@
+ <!-- put this into pop-up window -->
+ <div class="col-4 form-booking">
+  <!-- error msg?! -->
+  <%= simple_form_for(@chatroom) do |f| %>
+    <%= f.input :name, as: :string %>
+    <%= f.submit "Create channel", class: 'btn btn-outline-success'%>
+  <% end %>
+</div>
