@@ -1,7 +1,7 @@
 class ChatroomsController < ApplicationController
   def new
     @chatroom = Chatroom.new
-    @chatrooms = Chatroom.all
+    @chatrooms = Chatroom.all.order(created_at: :desc)
   end
 
   def create

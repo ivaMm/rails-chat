@@ -2,9 +2,13 @@ class MessagesController < ApplicationController
   def index
     if params[:query].present?
       @query = params[:query]
-      @chatrooms = Chatroom.all
+      @chatrooms = Chatroom.all.order(created_at: :desc)
       @users = User.all
       @messages = Message.order(created_at: :desc).search_by_content(@query)
+    else
+      @chatrooms = Chatroom.all.order(created_at: :desc)
+      @users = User.all
+      @messages = []
     end
   end
 
