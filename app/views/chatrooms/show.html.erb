@@ -1,3 +1,4 @@
+<%= render 'shared/navbar' %>
 <div class="grid-container">
   <div class="sidebar-sm">
     <div class="channels">
@@ -14,7 +15,11 @@
           <div class="row">
             <div class="person">
               <div class="dot"></div>
-              <span><%= link_to user.nickname %></span>
+              <% if current_user.id == user.id %>
+                <span><%= link_to user.nickname %> (you) </span>
+              <% else %>
+                <span><%= link_to user.nickname %> </span>
+              <% end %>
             </div>
           </div>
         </div>

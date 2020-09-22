@@ -1,0 +1,13 @@
+<div class="container" style="padding-top: 32px;">
+  <h1>Le Wagon - alumni</h1>
+  <%= link_to 'Back', :back, class: "link-alumni"  %>
+  <div class="row justify-content-xs-center">
+    <% @users.each do |user| %>
+      <div class="card-profile">
+        <h1><%= user.nickname %></h1>
+        <h6><%= user.email %></h6>
+        <!-- photo -->
+      </div>
+    <% end %>
+  </div>
+</div>
