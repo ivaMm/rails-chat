@@ -23,18 +23,27 @@
   </div>
 
   <div class="chat">
-    <h3 class="chatroom"># <%= @chatroom.name %></h3>
-    <div class="message" id="messages" data-chatroom-id="<%= @chatroom.id %>">
-      <% @chatroom.messages.each do |message| %>
-        <%= render 'messages/message', message: message %>
-      <% end %>
-
-    <div class="message-input">
-    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+    <% if @query.present? %>
+      <% @messages.empty? ? msg = 'No result for ' : msg = 'Results for '%>
+      <div class="message-results">
+        <h3><%= msg %> <strong><%= @query %></strong></h3>
+          <% @messages.each do |message| %>
+            <h3># <%= message.chatroom.name %></h3>
+            <%= render 'messages/message', message: message %>
+          <% end %>
+      </div>
+    <% else %>
+      <h3 class="chatroom"># <%= @chatroom.name %></h3>
+      <div class="message" id="messages" data-chatroom-id="<%= @chatroom.id %>">
+        <% @chatroom.messages.each do |message| %>
+          <%= render 'messages/message', message: message %>
+        <% end %>
+        <div class="message-input">
+          <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+            <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
-    </div>
   </div>
-  </div>
-
 </div>

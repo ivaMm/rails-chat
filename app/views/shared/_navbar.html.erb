@@ -6,7 +6,7 @@
     </button>
     <!-- search -->
     <div class="form-inline">
-      <%= form_tag chatroom_messages_path(@chatrooms), class: "form-inline form-search", method: :get do %>
+      <%= form_tag chatroom_path(@chatroom), class: "form-inline form-search", method: :get do %>
         <%= text_field_tag :query,
               params[:query],
               class: "form-control form-input",
