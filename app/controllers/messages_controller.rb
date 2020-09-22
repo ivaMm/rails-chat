@@ -1,13 +1,4 @@
 class MessagesController < ApplicationController
-  def index
-    if params[:query].present?
-      @query = params[:query]
-      @chatrooms = Chatroom.all
-      @users = User.all
-      @messages = Message.order(created_at: :desc).search_by_content(@query)
-    end
-  end
-
   def create
     @chatroom = Chatroom.find(params[:chatroom_id])
     @message = Message.new(message_params)

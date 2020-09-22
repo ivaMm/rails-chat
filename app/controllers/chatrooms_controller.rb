@@ -1,7 +1,7 @@
 class ChatroomsController < ApplicationController
   def new
     @chatroom = Chatroom.new
-    @chatrooms = Chatroom.all
+    @chatrooms = Chatroom.all.order(created_at: :desc)
   end
 
   def create
@@ -12,6 +12,12 @@ class ChatroomsController < ApplicationController
   end
 
   def show
+    if params[:query].present?
+      @query = params[:query]
+      @chatrooms = Chatroom.all.order(created_at: :desc)
+      @users = User.all
+      @messages = Message.order(created_at: :desc).search_by_content(@query)
+    end
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
     @chatrooms = Chatroom.all.order(created_at: :desc)
