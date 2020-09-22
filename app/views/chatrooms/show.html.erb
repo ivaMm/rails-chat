@@ -23,7 +23,7 @@
   </div>
 
   <div class="chat">
-    <h3 class="chatroom"><%= @chatroom.name %></h3>
+    <h3 class="chatroom"># <%= @chatroom.name %></h3>
     <div class="message" id="messages" data-chatroom-id="<%= @chatroom.id %>">
       <% @chatroom.messages.each do |message| %>
         <%= render 'messages/message', message: message %>
