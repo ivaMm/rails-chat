@@ -6,6 +6,8 @@
   height: 83vh;
   overflow-y: scroll;
   border-top: 1px solid rgba(150, 150, 150, .3);
+  background-color: #fff;
+  color: #000;
 }
 
 .chatroom {
@@ -18,8 +20,6 @@
   color: white;
 }
 
-.message {
+.chat .message {
   margin-top: 64px;
 }
-
-

@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon justify-content-between">
   <% if user_signed_in? %>
-    <a class="navbar-brand" href="#" style="color: #fff;">Le Wagon</a>
+    <%= link_to 'Le Wagon - alumni', users_path, class: "navbar-brand link-nav", style: "color: #fff;" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,17 +17,16 @@
     </div>
 
     <div class="nav-item dropdown">
-      <!-- change photo -->
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar-square dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <%= cl_image_tag current_user.photo.key, height: 40, width: 40, crop: :fill, class: "avatar", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <%= link_to "View profile", "#", class: "dropdown-item" %>
-        <%#= link_to "Another action", "#", class: "dropdown-item" %>
+        <%= link_to "View profile", user_path(current_user), class: "dropdown-item" %>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
     </div>
-  <% else %>
+    <!--
+  <#% else %>
     <div class="nav-item">
-      <%= link_to "Login", new_user_session_path, class: "nav-link", style: "color: white;" %>
-    </div>
+      <%#= link_to "Login", new_user_session_path, class: "nav-link", style: "color: white;" %>
+    </div> -->
   <% end %>
 </div>

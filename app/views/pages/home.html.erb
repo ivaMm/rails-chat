@@ -1,3 +1,8 @@
-<div class="container" style="padding: 24px;">
-  <h1>Please sign up...</h1>
+<div class="container-home">
+  <h1>Welcome to Slack copycat :)</h1>
+  <p>Please log in or sign up to proceed:</p>
+   <div class="nav-item">
+      <%= link_to "Log in", new_user_session_path, class: "link-devise btn-outline-white" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "link-devise btn-outline-white" %>
+    </div>
 </div>

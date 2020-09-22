@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     if current_user
-      @chatroom = Chatroom.first
+      @chatroom = Chatroom.last
       redirect_to chatroom_path(@chatroom)
     end
   end
