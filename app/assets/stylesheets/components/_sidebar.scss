@@ -6,6 +6,8 @@
   text-align: left;
   padding: 24px 0;
   overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 3;
 }
 
 .sidebar-sm h5 {
@@ -58,12 +60,4 @@
   border-radius: 50%;
   margin-right: 8px;
   margin-left: 44px;
-}
-
-.dot-active {
-  background-color: rgb(31, 229, 189);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: 8px;
 }

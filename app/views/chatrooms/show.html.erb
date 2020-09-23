@@ -10,35 +10,38 @@
     <br>
     <div class="direct">
       <h5>Direct Messages</h5>
+      <div class="flex-container">
+        <div class="row">
+          <div class="person">
+            <div class="dot"></div>
+            <span><%= link_to current_user.nickname %> (you) </span>
+          </div>
+        </div>
+      </div>
       <% @users.each do |user| %>
         <div class="flex-container">
           <div class="row">
             <div class="person">
               <div class="dot"></div>
-              <% if current_user.id == user.id %>
-                <span><%= link_to user.nickname %> (you) </span>
-              <% else %>
-                <span><%= link_to user.nickname %> </span>
-              <% end %>
+              <span><%= link_to user.nickname %> </span>
             </div>
           </div>
         </div>
       <% end %>
     </div>
   </div>
-
   <div class="chat">
     <% if @query.present? %>
-      <% @messages.empty? ? msg = 'No result for ' : msg = 'Results for '%>
+      <% @messages.empty? ? msg = 'No results for ' : msg = 'Results for '%>
       <div class="message-results">
         <h3><%= msg %> <strong><%= @query %></strong></h3>
           <% @messages.each do |message| %>
-            <h3># <%= message.chatroom.name %></h3>
+            <h5><strong><%= link_to "##{message.chatroom.name}", chatroom_path(message.chatroom) %></strong></h5>
             <%= render 'messages/message', message: message %>
           <% end %>
       </div>
     <% else %>
-      <h3 class="chatroom"># <%= @chatroom.name %></h3>
+      <h5 class="chatroom">#<%= @chatroom.name %></h5>
       <div class="message" id="messages" data-chatroom-id="<%= @chatroom.id %>">
         <% @chatroom.messages.each do |message| %>
           <%= render 'messages/message', message: message %>

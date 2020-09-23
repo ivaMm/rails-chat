@@ -2,7 +2,7 @@
   display: flex;
   justify-content: left;
   align-items: left;
-  padding: 16px;
+  padding: 16px 0;
   height: 83vh;
   overflow-y: scroll;
   border-top: 1px solid rgba(150, 150, 150, .3);
@@ -14,12 +14,21 @@
   width: 79%;
   position: fixed;
   margin-top: -16px;
-  margin-left: -16px;
-  padding: 16px;
-  background-color: #400d40;
-  color: white;
+  padding: 8px 16px;
+  background-color: white;
+  color: #262626;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(220, 220, 220);
+  z-index: 2;
 }
 
 .chat .message {
-  margin-top: 64px;
+  margin-top: 24px;
+  width: 100%;
+  padding: 16px;
+}
+
+.chat .message-results {
+  width: 100%;
+  padding: 0px 16px;
 }

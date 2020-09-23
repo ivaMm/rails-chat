@@ -21,7 +21,7 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
     @chatrooms = Chatroom.all.order(created_at: :desc)
-    @users = User.all
+    @users = User.all.where.not(id: current_user.id)
   end
 
   private

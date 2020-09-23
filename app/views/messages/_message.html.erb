@@ -1,7 +1,12 @@
 <div class="message-container" id="message-<%= message.id %>">
-  <i class="author">
-    <span><%= message.user.nickname %></span>
-    <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+  <i class="row author">
+    <div>
+      <%= cl_image_tag message.user.photo.key, height: 40, width: 40, crop: :fill, class: 'avatar-square' %>
+    </div>
+    <div class="col">
+      <span><%= message.user.nickname %></span>
+      <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      <p><%= message.content %></p>
+    </div>
   </i>
-  <p><%= message.content %></p>
 </div>
