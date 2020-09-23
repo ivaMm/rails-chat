@@ -1,19 +1,29 @@
 // srediti sve
-/*
+/* */
 .message-container {
- padding: 8px 12px 0px 12px;
+  margin-left: 16px;
+  z-index: 1;
 }
 
 .author {
-  line-height: 16px;
-  font-weight: bold;
+  font-style: normal;
 }
 
+.author span {
+  //line-height: 16px;
+  font-weight: bold;
+ }
+
+.author small {
+  //line-height: 16px;
+  color: #333;
+ }
+
 .message-container p {
-  line-height: 16px;
-  padding: 8px 12px 0px 12px;
+  line-height: 24px;
+  //padding-left: 32px;
 }
-*/
+
 .message-input {
   position: fixed;
   top: 92%;

@@ -2,7 +2,8 @@
   <div class="container-profile">
     <h1><%= current_user.nickname %></h1>
     <h6><%= current_user.email %></h6>
-    <%= cl_image_tag current_user.photo.key, height: 120, width: 120, crop: :fill %>
+    <br>
+    <%= cl_image_tag current_user.photo.key, height: 130, width: 130, crop: :fill %>
     <div style="margin-top: 64px;">
       <%= link_to "Edit", edit_user_registration_path, class: "link-profile" %>
       <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "link-profile" %>
