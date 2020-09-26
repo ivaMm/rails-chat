@@ -1,8 +1,19 @@
 <div class="container-home">
-  <h1>Welcome to Slack copycat :)</h1>
+  <div class="logo">
+    <div class="blue sm"></div>
+    <div class="blue m"></div>
+    <div class="green sm"></div>
+    <div class="green m"></div>
+    <div class="yellow sm"></div>
+    <div class="yellow m"></div>
+    <div class="pink sm"></div>
+    <div class="pink m"></div>
+  </div>
+  <h1 style="padding: 8px 0;">Welcome to Slack copycat :)</h1>
   <p>Please log in or sign up to proceed:</p>
-   <div class="nav-item">
-      <%= link_to "Log in", new_user_session_path, class: "link-devise btn-outline-white" %>
-      <%= link_to "Sign up", new_user_registration_path, class: "link-devise btn-outline-white" %>
-    </div>
+  <br>
+  <div class="nav-item">
+    <%= link_to "Log in", new_user_session_path, class: "link-devise btn-outline-white" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "link-devise btn-outline-white" %>
+  </div>
 </div>
