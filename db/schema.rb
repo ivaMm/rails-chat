@@ -36,20 +36,10 @@ ActiveRecord::Schema.define(version: 2020_09_22_163009) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "chatroom_users", force: :cascade do |t|
-    t.bigint "chatroom_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["chatroom_id"], name: "index_chatroom_users_on_chatroom_id"
-    t.index ["user_id"], name: "index_chatroom_users_on_user_id"
-  end
-
   create_table "chatrooms", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "direct_msg", default: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -76,8 +66,6 @@ ActiveRecord::Schema.define(version: 2020_09_22_163009) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "chatroom_users", "chatrooms"
-  add_foreign_key "chatroom_users", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
 end
