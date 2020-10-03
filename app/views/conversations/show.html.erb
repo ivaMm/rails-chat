@@ -14,7 +14,7 @@
         <div class="row">
           <div class="person">
             <div class="dot"></div>
-            <span><%= link_to current_user.nickname %> (you) </span>
+            <span><%= link_to current_user.nickname, conversations_path(user_id: current_user), remote: true, method: :post %> (you) </span>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
           <div class="row">
             <div class="person">
               <div class="dot"></div>
-              <span><%= link_to user.nickname %> </span>
+              <span><%= link_to user.nickname, conversations_path(user_id: user), remote: true, method: :post  %> </span>
             </div>
           </div>
         </div>
@@ -31,27 +31,28 @@
     </div>
   </div>
   <div class="chat">
-   <!-- <#% if @query.present? %>
-      <#% @messages.empty? ? msg = 'No results for ' : msg = 'Results for '%> -->
+    <% if @query.present? %>
+      <% @messages.empty? ? msg = 'No results for ' : msg = 'Results for '%>
       <div class="message-results">
-    <!--    <h3><%#= msg %> <strong><%#= @query %></strong></h3> -->
-          <% @private_messages.each do |message| %>
-            <h5><strong><%= link_to "##{private_message.conversation.opposed_user(current_user)}", conversation_path(private_message.conversation) %></strong></h5>
-            <%= render 'private_messages/private_message', private_message: message %>
+        <h3><%= msg %> <strong><%= @query %></strong></h3>
+          <% @messages.each do |message| %>
+            <h5><strong><%= link_to "##{message.chatroom.name}", chatroom_path(message.chatroom) %></strong></h5>
+            <%= render 'messages/message', message: message %>
           <% end %>
       </div>
-    <#% else %>
-      <h5 class="chatroom">#<%#= @chatroom.name %></h5>
-      <div class="message" id="private_messages" data-conversation-id="<%= @conversation.id %>">
+    <% else %>
+      <h5 class="chatroom">#<%= @conversation.opposed_user(current_user).nickname %></h5>
+      <div class="message" id="private-messages" data-conversation-id="<%= @conversation.id %>">
         <% @conversation.private_messages.each do |message| %>
           <%= render 'private_messages/private_message', private_message: message %>
         <% end %>
-        <div class="message-input">
-          <%= simple_form_for [ @conversation, @private_message.new ], remote: true do |f| %>
-            <%= f.input :content, label: false, placeholder: "Message ##{@conversation.opposed_user(current_user)}" %>
+        <div class="message-input" style="top: 60%;">
+          <%= simple_form_for [ @conversation, @private_message ], remote: true do |f| %>
+            <%= f.input :content, label: false, placeholder: "Message ##{@conversation.opposed_user(current_user).nickname}" %>
+            <%= f.submit %> <!-- wtf -->
           <% end %>
         </div>
       </div>
-    <#% end %>
+    <% end %>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-   def create
+  def create
     @conversation = Conversation.get(current_user.id, params[:user_id])
     add_to_conversations unless conversated?
 
@@ -7,7 +7,18 @@ class ConversationsController < ApplicationController
   end
 
   def show
+     if params[:query].present?
+      @query = params[:query]
+      @chatrooms = Chatroom.all.order(created_at: :desc)
+      @users = User.all
+      @messages = Message.order(created_at: :desc).search_by_content(@query)
+    end
+    @chatroom = Chatroom.last
     @conversation = Conversation.find(params[:id])
+    @private_message = PrivateMessage.new
+    @chatrooms = Chatroom.all.order(created_at: :desc)
+
+    @users = User.all.where.not(id: current_user.id)
   end
 
   private
