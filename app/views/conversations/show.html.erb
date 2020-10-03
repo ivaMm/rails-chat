@@ -1,0 +1,57 @@
+<%= render 'shared/navbar' %>
+<div class="grid-container">
+  <div class="sidebar-sm">
+    <div class="channels">
+      <h5>Channels <%= link_to "+", new_chatroom_path %></h5>
+      <% @chatrooms.each do |chatroom| %>
+        <div><i class="fab fa-slack-hash"></i><%= link_to chatroom.name, chatroom_path(chatroom) %></div>
+      <% end %>
+    </div>
+    <br>
+    <div class="direct">
+      <h5>Direct Messages</h5>
+      <div class="flex-container">
+        <div class="row">
+          <div class="person">
+            <div class="dot"></div>
+            <span><%= link_to current_user.nickname %> (you) </span>
+          </div>
+        </div>
+      </div>
+      <% @users.each do |user| %>
+        <div class="flex-container">
+          <div class="row">
+            <div class="person">
+              <div class="dot"></div>
+              <span><%= link_to user.nickname %> </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="chat">
+   <!-- <#% if @query.present? %>
+      <#% @messages.empty? ? msg = 'No results for ' : msg = 'Results for '%> -->
+      <div class="message-results">
+    <!--    <h3><%#= msg %> <strong><%#= @query %></strong></h3> -->
+          <% @private_messages.each do |message| %>
+            <h5><strong><%= link_to "##{private_message.conversation.opposed_user(current_user)}", conversation_path(private_message.conversation) %></strong></h5>
+            <%= render 'private_messages/private_message', private_message: message %>
+          <% end %>
+      </div>
+    <#% else %>
+      <h5 class="chatroom">#<%#= @chatroom.name %></h5>
+      <div class="message" id="private_messages" data-conversation-id="<%= @conversation.id %>">
+        <% @conversation.private_messages.each do |message| %>
+          <%= render 'private_messages/private_message', private_message: message %>
+        <% end %>
+        <div class="message-input">
+          <%= simple_form_for [ @conversation, @private_message.new ], remote: true do |f| %>
+            <%= f.input :content, label: false, placeholder: "Message ##{@conversation.opposed_user(current_user)}" %>
+          <% end %>
+        </div>
+      </div>
+    <#% end %>
+  </div>
+</div>

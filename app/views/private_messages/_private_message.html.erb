@@ -1,0 +1,12 @@
+<div class="message-container" id="message-<%= private_message.id %>">
+  <i class="row author">
+    <div>
+      <%= cl_image_tag private_message.user.photo.key, height: 40, width: 40, crop: :fill, class: 'avatar-square' %>
+    </div>
+    <div class="col">
+      <span><%#= message.user.nickname %></span>
+      <small><%= private_message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      <p><%= private_message.content %></p>
+    </div>
+  </i>
+</div>
