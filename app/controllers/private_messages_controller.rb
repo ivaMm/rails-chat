@@ -4,6 +4,7 @@ class PrivateMessagesController < ApplicationController
     @private_message = PrivateMessage.create(private_message_params)
     @private_message.conversation = @conversation
     @private_message.user = current_user
+    @private_message.recipient_id = @conversation.recipient_id
 
     if @private_message.save
       ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "private_message", locals: { private_message: @private_message }))

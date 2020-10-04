@@ -32,7 +32,7 @@
   </div>
   <div class="chat">
     <% if @query.present? %>
-      <% @messages.empty? ? msg = 'No results for ' : msg = 'Results for '%>
+      <% @messages.empty? ? msg = 'No results in public channels for ' : msg = 'Results in public channels for '%>
       <div class="message-results">
         <h3><%= msg %> <strong><%= @query %></strong></h3>
           <% @messages.each do |message| %>
@@ -40,6 +40,16 @@
             <%= render 'messages/message', message: message %>
           <% end %>
       </div>
+
+           <% @private_messages.empty? ? pmsg = 'No results in private channels for ' : pmsg = 'Results in private channels for '%>
+      <div class="message-results">
+        <h3><%= pmsg %> <strong><%= @query %></strong></h3>
+          <% @private_messages.each do |message| %>
+            <h5><strong><%= link_to "##{message.conversation.opposed_user(current_user).nickname}", conversation_path(message.conversation) %></strong></h5>
+            <%= render 'private_messages/private_message', private_message: message %>
+          <% end %>
+      </div>
+
     <% else %>
       <h5 class="chatroom">#<%= @chatroom.name %></h5>
       <div class="message" id="messages" data-chatroom-id="<%= @chatroom.id %>">
