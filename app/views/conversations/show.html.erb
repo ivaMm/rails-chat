@@ -46,10 +46,9 @@
         <% @conversation.private_messages.each do |message| %>
           <%= render 'private_messages/private_message', private_message: message %>
         <% end %>
-        <div class="message-input" style="top: 60%;">
+        <div class="message-input">
           <%= simple_form_for [ @conversation, @private_message ], remote: true do |f| %>
             <%= f.input :content, label: false, placeholder: "Message ##{@conversation.opposed_user(current_user).nickname}" %>
-            <%= f.submit %> <!-- wtf -->
           <% end %>
         </div>
       </div>
