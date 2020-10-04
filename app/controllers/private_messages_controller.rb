@@ -6,10 +6,8 @@ class PrivateMessagesController < ApplicationController
     @private_message.user = current_user
 
     if @private_message.save
-      ConversationChannel.broadcast_to(
-        @conversation,
-        render_to_string(partial: "private_message", locals: { private_message: @private_message })
-      )
+      ConversationChannel.broadcast_to(@conversation, render_to_string(partial: "private_message", locals: { private_message: @private_message }))
+      redirect_to conversation_path(@conversation, anchor: "message-#{@private_message.id}")
     else
       render "conversations/show"
     end
