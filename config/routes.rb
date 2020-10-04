@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   resources :chatrooms, only: [:new, :create, :show] do
     resources :messages, only: :create
   end
+  resources :conversations, only: [:create, :show] do
+    resources :private_messages, only: :create
+  end
   resources :users, only: [:index, :show]
 end

@@ -23,7 +23,7 @@
           <div class="row">
             <div class="person">
               <div class="dot"></div>
-              <span><%= link_to user.nickname, conversations_path(user_id: user), remote: true, method: :post %> </span>
+              <span><%= link_to user.nickname, conversations_path(user_id: user), remote: true, method: :post  %> </span>
             </div>
           </div>
         </div>
@@ -41,14 +41,14 @@
           <% end %>
       </div>
     <% else %>
-      <h5 class="chatroom">#<%= @chatroom.name %></h5>
-      <div class="message" id="messages" data-chatroom-id="<%= @chatroom.id %>">
-        <% @chatroom.messages.each do |message| %>
-          <%= render 'messages/message', message: message %>
+      <h5 class="chatroom">#<%= @conversation.opposed_user(current_user).nickname %></h5>
+      <div class="message" id="private-messages" data-conversation-id="<%= @conversation.id %>">
+        <% @conversation.private_messages.each do |message| %>
+          <%= render 'private_messages/private_message', private_message: message %>
         <% end %>
         <div class="message-input">
-          <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-            <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+          <%= simple_form_for [ @conversation, @private_message ], remote: true do |f| %>
+            <%= f.input :content, label: false, placeholder: "Message ##{@conversation.opposed_user(current_user).nickname}" %>
           <% end %>
         </div>
       </div>
