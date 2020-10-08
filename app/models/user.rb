@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :private_messages
   has_many :conversations, foreign_key: :sender_id
   validates :photo, presence: true
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true, length: { in: 2..20 }
 end
